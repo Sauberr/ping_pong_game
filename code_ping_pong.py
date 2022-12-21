@@ -52,6 +52,23 @@ pen.write(f'{player_1}: 0  {player_2}: 0', align='center', font=('Verdana', 22, 
 score_1 = 0
 score_2 = 0
 
+
+# Leave Game
+leave = turtle.Turtle()
+leave.speed(0)
+leave.shape('square')
+leave.color('white')
+leave.penup()
+leave.hideturtle()
+leave.goto(-230, -280)
+leave.write(f'Если хочешь выйти: "q"', align='right', font=('Verdana', 10, 'normal'))
+
+def leave_game():
+    turtle.bye()
+
+
+
+
 # functions
 def rocket_left_up():
     y = rocket_left.ycor()
@@ -85,13 +102,15 @@ def rocket_right_down():
         y -= 20
     rocket_right.sety(y)
 
+
 # keyboard
+
 win.listen()
 win.onkeypress(rocket_left_up, 'w')
 win.onkeypress(rocket_left_down, 's')
 win.onkeypress(rocket_right_up, 'Up')
 win.onkeypress(rocket_right_down, 'Down')
-
+win.onkeypress(leave_game, 'q')
 
 
 while True:
@@ -122,10 +141,20 @@ while True:
         ball.dx *= -1
         score_2 += 1
         pen.clear()
-        pen.write (f'{player_1}: {score_1}  {player_2}: {score_2}', align='center', font=('Verdana', 22, 'normal'))
+        pen.write (f'{player_1}: {score_1}  {player_2}: {score_2}', align='center', font=('Verdana', 20, 'normal'))
 
     if ball.xcor() > 340 and ball.ycor() < rocket_right.ycor() + 50  and ball.ycor() > rocket_right.ycor() - 50:
          ball.dx *= -1
 
     if ball.xcor() < -340 and ball.ycor() < rocket_left.ycor() + 50 and ball.ycor() > rocket_left.ycor() - 50:
         ball.dx *= -1
+
+    # End Game
+
+    if score_1 >= 11:
+        print(f'{player_1} WIN')
+        break
+    elif score_2 >=  11:
+        print(f'{player_2} WIN')
+        break
+
