@@ -1,1 +1,7 @@
-# ping_pong_game.py
+# Ping pong game 
+
+The project for study Python.
+
+#### Stack:
+
+- [Python](https://www.python.org/downloads/)
